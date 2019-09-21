@@ -30,6 +30,7 @@ while 1:
 	  if not len(buf):
 	    	  break
 	  string = str(buf, 'utf-8')
+	  # acknowledge the receiving the package
 	  print ("ACK:", string)
 	
 s.shutdown(1)
