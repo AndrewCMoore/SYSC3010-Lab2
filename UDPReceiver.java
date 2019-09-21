@@ -6,6 +6,7 @@ public class UDPReceiver {
 
 	public static void main( String args[] )
 	{ 
+
 	      // Check the arguments
 	      if( args.length != 1 )
 	      {
@@ -26,7 +27,14 @@ public class UDPReceiver {
 		        DatagramPacket packet = new DatagramPacket( new byte[PACKETSIZE], PACKETSIZE ) ;
 	            socket.receive( packet ) ;
 
-	            System.out.println( packet.getAddress() + " " + packet.getPort() + ": " + new String(packet.getData()).trim() ) ;
+	            String message = new String(packet.getData()).trim();
+	            System.out.println( packet.getAddress() + " " + packet.getPort() + ": " + message ) ;
+	            
+		    // Resending the data back to the sender file
+	            byte[] data = message.getBytes();
+	            DatagramPacket packet2 = new DatagramPacket(data, data.length, packet.getAddress(), packet.getPort());
+	            System.out.println("Sending returning message");
+	            socket.send(packet2);
 	        }  
 	     }
 	     catch( Exception e )
@@ -35,4 +43,3 @@ public class UDPReceiver {
 	     }
   }
 }
-
