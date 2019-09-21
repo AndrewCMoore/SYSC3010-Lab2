@@ -4,6 +4,7 @@ import socket, sys, time
 
 textport = sys.argv[1]
 
+# open a new socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 port = int(textport)
 server_address = ('localhost', port)
